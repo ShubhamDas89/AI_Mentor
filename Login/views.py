@@ -11,9 +11,11 @@ from sklearn.metrics.pairwise import linear_kernel
 from io import StringIO
 from django.conf import settings
 import csv
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Replace with your API key
-API_KEY = 'AIzaSyCLklGQ9KjKm7a6OwhuCobNztinpd0KOGE'
-
+API_KEY = os.getenv('API_KEY')
 
 youtube = build('youtube', 'v3', developerKey=API_KEY)
 

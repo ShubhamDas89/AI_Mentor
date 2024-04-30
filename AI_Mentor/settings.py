@@ -13,7 +13,21 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 from pathlib import Path
 from django.contrib.messages import constants as messages
 from os import path
+import os
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Access the API key from the environment variables
+API_KEY = os.getenv('API_KEY')
+
+# Now you can use the API key in your Django project settings or views
+# For example:
+SOME_API_SETTING = {
+    'API_KEY': API_KEY,
+    # other settings...
+}
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 

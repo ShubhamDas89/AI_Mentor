@@ -11,14 +11,7 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">     
 
     <title>AI_Mentor</title>
-    <style>
-      .box1{
-        margin: 0 auto;
-        width: 40%;
-        max-width: 550px;
-        min-width: 300px;
-        position: relative;
-      }    
+    <style>  
       .button-container {
         position: absolute;
         bottom: 0;
@@ -74,26 +67,36 @@
         width: 100%;
       }
     }
-    .navbar-custom {
+.navbar-custom {
+      position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 10px 20px;
-      background-color: transparent; /* Set navbar background to transparent */
+      background-color: transparent;
+    }
+    
+    .navbar-toggle {
+      display: none; /* Hide toggle button by default */
+      background: none; /* Remove background */
+      border: none; /* Remove border */
+      font-size: 1.5em;
+      cursor: pointer;
+      position: absolute;
+      top: 10px;
+      right: 20px;
     }
     
     .navbar-links {
-      display: flex;
-      gap: 20px; /* Spacing between links */
       list-style: none;
       margin: 0;
-      padding: 0; /* Remove default padding */
+      padding: 0;
+      display: flex;
+      pos    ition: relative; /* Ensure relative positioning */
     }
     
     .navbar-links li {
       padding: 0;
-      display: flex;
-      align-items: center; /* Center-align items vertically */
     }
     
     .navbar-links li a {
@@ -104,32 +107,84 @@
     .navbar-links li a:hover {
       color: #10078d; 
     }
-    /* styles.css */
+    
+    /* Dropdown styles */
+    .navbar-links-dropdown {
+      display: none;
+      position: absolute;
+      top: 100%;
+      right: 0;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1;
+    }
+    
+    .navbar-links-dropdown.open {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    /* Rest of your CSS */
+    
+    /* Add media query for smaller screens */
+    /* Rest of your CSS */
 
-    /* styles.css */
-
-    /* styles.css */
-
-    /* styles.css */
-
+    /* Add media query for smaller screens */
+    @media screen and (max-width: 768px) {
+      .navbar-toggle {
+        display: block;
+      }
+    
+      .navbar-links {
+        display: none;
+        flex-direction: column;
+        align-items: flex-end; /* Align items to the right */
+        position: absolute;
+        top: 100%;
+        right: 0; /* Position dropdown menu on the right */
+        width: 100%;
+      }
+    
+      .navbar-links.open {
+        display: flex;
+      }
+    
+      .navbar-links-dropdown {
+        position: relative;
+        top: auto;
+        right: auto;
+        width: 100%;
+      }
+    }
+    
+   
+    
     body {
+      background-image: url('{% static "images/1.jpg" %}');
+      background-size: 100vw 100vh;
+      background-repeat: no-repeat;
+      display:flex-box;
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
+      
     }
     
     .container {
       display: flex;
       justify-content: center;
       align-items: center;
-
-      overflow: hidden;
+      position:absolute;
+      bottom:0;
+      bottom: 0;
+      left: 0; /* Center horizontally */
+      right: 0; /* Center horizontally */
     }
     
     .chat-box {
       width: 80vw;
-      height: 60%%;
+      height: 60%;
       padding: 20px;
       border-radius: 10px;
       background-color: rgba(255, 255, 255, 0.4); /* Add transparency for a blurred effect */
@@ -137,49 +192,36 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
       
     }
-    /* styles.css */
-
-    /* styles.css */
-
-
-    
     .input-container {
       margin-top: 20px;
     }
-    
     .form-group {
       margin-bottom: 15px;
     }
-    
     .form-control {
       width: 100%;
       padding: 10px;
       border: 1px solid #ccc;
       border-radius: 5px;
     }
-    
     .btn {
       padding: 10px 20px;
       border: none;
       border-radius: 3px;
       cursor: pointer;
     }
-    
     .btn-info {
       background-color: #5bc0de;
       color: #fff;
     }
-    
     .btn-success {
       background-color: #5cb85c;
       color: #fff;
     }
-    
     button:hover,
     input:hover {
       opacity: 0.8;
     }
-    
     .button-container {
       text-align: center;
       margin-bottom: 20px;
@@ -189,8 +231,7 @@
       font-size: 16px; /* Change to your desired font size */
       list-style-type: decimal; /* Change the list style type */
       padding-left: 20px; /* Add some padding to the left for better readability */
-    }
-    
+    } 
     /* Style for ol items */
     ol li {
       margin-bottom: 5px; /* Add some spacing between list items */
@@ -200,47 +241,40 @@
       white-space: nowrap; /* Prevent line breaks */
       border-right: 3px solid transparent; /* Start with a transparent border-right */
       animation: typing1 4s steps(40, end), blink-caret 0.7s  /* Apply both animations */
-    }
-    
-    
-    </style>
+    } 
+  </style>
   </head>
-  <body style="background-image: url('{% static '/images/1.jpg'%}'); background-size: cover; background-repeat: no-repeat; margin: 0; padding: 0; font-family: Arial, sans-serif;">
-    <nav class="navbar-custom">
-      <a class="navbar-brand" href="#">AI Mentor</a>
-      <ul class="navbar-links">
-          <li><a href="mailto:shubhamdas521@gmail.com">Contact Us</a></li>
-          <li class="nav-item">
-            <a href="{% url 'home' %}" class="nav-link active">Home</a>
-          </li>
-          <li class="nav-item">
-            <a href="{% url 'l_p' %}" class="nav-link active">logout</a>
-          </li>
-      </ul>
-   </nav> 
-      <h4>
+  <body >
+   <nav class="navbar-custom">
+  <a class="navbar-brand" href="#">AI Mentor</a>
+  <button class="navbar-toggle">&#9776;</button> <!-- Button for dropdown menu -->
+  <ul class="navbar-links">
+    <li><a href="{% url 'home' %}" class="nav-link active">Home</a></li>
+    <li><a href="{% url 'l_p' %}" class="nav-link active">Logout</a></li>
+    <li><a href="mailto:shubhamdas521@gmail.com" class="nav-link">Contact Us</a></li>
+  </ul>
+</nav>
+      {% comment %} <h4>
         <span class="line1">Tell us about your past studies and interests to receive</span><br>
         <span class="line2">personalized future study recommendations</span>
-      </h4>
+      </h4> {% endcomment %}
         <br>
         <div class="container">
           <div class="chat-box">
             <div class="output" id="output">
               {% if recommendations %}
-
-  {% for topic, recommended_topics in recommendations.items %}
-      <p><b>Recommendations for '{{ topic }}' are :-</b></p>
-      <ol>
-          {% for recommended_topic in recommended_topics %}
-              <li>{{ recommended_topic }}</li>
-          {% endfor %}
-      </ol>
-  {% endfor %}
-  <div class="button-container">
-    <input class="btn btn-success" id="hu" type="button" value="Get resources" onclick="location.href='{% url 'Y_R' %}'" />
-  </div>
-
-{% endif %}
+                  {% for topic, recommended_topics in recommendations.items %}
+                      <p><b>Recommendations for '{{ topic }}' are :-</b></p>
+                      <ol>
+                          {% for recommended_topic in recommended_topics %}
+                              <li>{{ recommended_topic }}</li>
+                          {% endfor %}
+                      </ol>
+                  {% endfor %}
+                  <div class="button-container">
+                    <input class="btn btn-success" id="hu" type="button" value="Get resources" onclick="location.href='{% url 'Y_R' %}'" />
+                  </div>
+              {% endif %}
               <!-- Recommendations will appear here -->
             </div>
             <div class="input-container">
@@ -259,47 +293,29 @@
             </div>
           </div>
         </div>
-        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-        <script>
-          window.botpressWebChat.init({
-             "botName":"AI Mentor",
-              "composerPlaceholder": "Ask Your Questions",
-              "botConversationDescription": "This chatbot helps you to find yout answers.",
-              "botId": "f337a604-6140-4b78-9b6e-144c4358d045",
-              "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
-              "messagingUrl": "https://messaging.botpress.cloud",
-              "clientId": "f337a604-6140-4b78-9b6e-144c4358d045",
-              "webhookId": "79928da6-1305-4977-b463-101c5ba595ea",
-              "lazySocket": true,
-              "themeName": "prism",
-              "frontendVersion": "v1",
-              "useSessionStorage": true,
-              "enableConversationDeletion": true,
-              "showPoweredBy": true,
-              "theme": "prism",
-              "themeColor": "#2563eb"
-          });
+<script>
+  document.querySelector('.navbar-toggle').addEventListener('click', function() {
+    document.querySelector('.navbar-links').classList.toggle('open');
+  });
+  
   // JavaScript to trigger the animation
-document.addEventListener('DOMContentLoaded', function() {
-  var output = document.getElementById('output');
-  var lines = output.innerText.split('\n'); // Split text into lines
-  output.innerText = ''; // Clear content
-  
-  // Function to add lines one by one with a delay
-  function typeLines(index) {
-    if (index < lines.length) {
-      output.innerText += lines[index] + '\n'; // Add line
-      index++;
-      setTimeout(function() {
-        typeLines(index); // Recursive call for next line
-      }, 1000); // Adjust delay between lines (milliseconds)
-    }
-  }
-  
-  typeLines(0); // Start typing lines
-});
-
-
+      document.addEventListener('DOMContentLoaded', function() {
+        var output = document.getElementById('output');
+        var lines = output.innerText.split('\n'); // Split text into lines
+        output.innerText = ''; // Clear content
+        
+        // Function to add lines one by one with a delay
+        function typeLines(index) {
+          if (index < lines.length) {
+            output.innerText += lines[index] + '\n'; // Add line
+            index++;
+            setTimeout(function() {
+              typeLines(index); // Recursive call for next line
+            }, 1000); // Adjust delay between lines (milliseconds)
+          }
+        }
+        typeLines(0); // Start typing lines
+      });
 </script>
 </body>
 </html>

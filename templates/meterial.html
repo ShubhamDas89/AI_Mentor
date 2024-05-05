@@ -69,38 +69,105 @@
         }
       }
       .navbar-custom {
+        position: relative;
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 10px 20px;
-        background-color: transparent; /* Set navbar background to transparent */
+        background-color: transparent;
+      }
+      
+      .navbar-toggle {
+        display: none; /* Hide toggle button by default */
+        background: none; /* Remove background */
+        border: none; /* Remove border */
+        font-size: 1.5em;
+        cursor: pointer;
+        position: absolute;
+        top: 10px;
+        right: 20px;
       }
       
       .navbar-links {
-        display: flex;
-        gap: 20px; /* Spacing between links */
         list-style: none;
         margin: 0;
-        padding: 0; /* Remove default padding */
+        padding: 0;
+        display: flex;
+        pos    ition: relative; /* Ensure relative positioning */
       }
       
       .navbar-links li {
         padding: 0;
-        display: flex;
-        align-items: center; /* Center-align items vertically */
       }
       
       .navbar-links li a {
         text-decoration: none;
-        color: #007bff; /* Default text color for links (black) */
+        color: #007bff; 
       }
       
       .navbar-links li a:hover {
-        color: #10078d; /* Text color on hover (blue) */
+        color: #10078d; 
       }
+      
+      /* Dropdown styles */
+      .navbar-links-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        right: 0;
+        background-color: #f9f9f9;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 1;
+      }
+      
+      .navbar-links-dropdown.open {
+        display: flex;
+        flex-direction: column;
+      }
+      
+      /* Rest of your CSS */
+      
+      /* Add media query for smaller screens */
+      /* Rest of your CSS */
+  
+      /* Add media query for smaller screens */
+      @media screen and (max-width: 768px) {
+        .navbar-toggle {
+          display: block;
+        }
+      
+        .navbar-links {
+          display: none;
+          flex-direction: column;
+          align-items: flex-end; /* Align items to the right */
+          position: absolute;
+          top: 100%;
+          right: 0; /* Position dropdown menu on the right */
+          width: 100%;
+        }
+      
+        .navbar-links.open {
+          display: flex;
+        }
+      
+        .navbar-links-dropdown {
+          position: relative;
+          top: auto;
+          right: auto;
+          width: 100%;
+        }
+      }
+      body {
+        background-image: url('{% static "images/28.jpg" %}');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
     </style>
   </head>
-  <body style="background-image: url('{% static '/images/3.jpg'%}'); background-size: cover; background-repeat: no-repeat; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <body >
     <nav class="navbar-custom">
       <a class="navbar-brand" href="#">AI Mentor</a>
       <button class="navbar-toggle">&#9776;</button> <!-- Button for dropdown menu -->
@@ -162,6 +229,9 @@
        "theme": "prism",
        "themeColor": "#2563eb"
    });
+   document.querySelector('.navbar-toggle').addEventListener('click', function() {
+    document.querySelector('.navbar-links').classList.toggle('open');
+  });
 </script>
 
     <!-- Optional JavaScript -->

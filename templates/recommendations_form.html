@@ -160,7 +160,7 @@
    
     
     body {
-      background-image: url('{% static "images/1.jpg" %}');
+      background-image: url('{% static "images/21.jpg" %}');
       background-size: 100vw 100vh;
       background-repeat: no-repeat;
       display:flex-box;
@@ -242,6 +242,63 @@
       border-right: 3px solid transparent; /* Start with a transparent border-right */
       animation: typing1 4s steps(40, end), blink-caret 0.7s  /* Apply both animations */
     } 
+    .input-container {
+      position: relative;
+      margin-bottom: 15px; /* Add some spacing below the input container */
+    }
+    
+    .form-group {
+      margin-bottom: 0; /* Remove the default margin-bottom */
+    }
+    
+    .form-control {
+      width: calc(100% - 120px); /* Adjust the width of the input to leave space for the button */
+    }
+    
+    .btn {
+      position: absolute;
+      top: 50%; /* Position the button vertically centered */
+      right: 5px; /* Adjust the right position of the button */
+      transform: translateY(-50%); /* Center the button vertically */
+    }
+    .box1{
+      width: 40%;
+      max-width: 550px;
+      min-width: 300px;
+      bottom: 20%;
+    }    
+    .addbox
+    {
+      border: 1px solid black;
+      display: inline-block;
+      padding: 19px;
+      margin-right: 12px;
+      margin-bottom: 30px;
+      box-sizing: border-box;
+      width: 260px;
+      border-radius: 7px;
+      bottom:20%;
+    }
+    h1 {
+			font-size: 60px;
+			font-family: Arial, Helvetica, sans-serif;
+			background: linear-gradient( red , blue);
+			-webkit-text-fill-color: transparent;
+			-webkit-background-clip: text;
+		}
+    .heading{
+      padding-top: 7vh;
+      margin: 0 auto;
+      width:80vw;
+      top: 20vh;
+      left: 10vw;
+    }
+    h2{
+
+    }
+
+
+    
   </style>
   </head>
   <body >
@@ -251,14 +308,33 @@
   <ul class="navbar-links">
     <li><a href="{% url 'home' %}" class="nav-link active">Home</a></li>
     <li><a href="{% url 'l_p' %}" class="nav-link active">Logout</a></li>
+    <li><a href="{% url 'Y_R' %}" class="nav-link active">resources</a></li>
     <li><a href="mailto:shubhamdas521@gmail.com" class="nav-link">Contact Us</a></li>
   </ul>
 </nav>
-      {% comment %} <h4>
-        <span class="line1">Tell us about your past studies and interests to receive</span><br>
-        <span class="line2">personalized future study recommendations</span>
-      </h4> {% endcomment %}
+
         <br>
+        {% if not recommendations%}
+        {% comment %} <h4>
+          <span class="line1">Tell us about your past studies and interests to receive</span><br>
+          <span class="line2">personalized future study recommendations</span>
+        </h4> {% endcomment %}
+        {% comment %} <div class="box1">
+
+          <div class="addbox">
+            <h5>thank</h5>
+        
+          </div>
+          <div class="addbox">
+            <h5>you</h5>
+        
+          </div>
+        </div> {% endcomment %} 
+        <div class ="heading">
+          <h1> Hello, {{ username }}</h1>
+          <h2> Write your past studies and interests and get best recommendations for future .</h2>
+        </div>
+        {% endif %}
         <div class="container">
           <div class="chat-box">
             <div class="output" id="output">
@@ -284,12 +360,9 @@
                   <input type="text" name="user_input" id="user_input" placeholder="Write your past studies and interests separated by commas." class="form-control" required value="{{ user_input }}">
                 </div>
                 <div class="form-group">
-                  <input type="submit" name="submit" class="btn btn-info btn-md" value="Get Recommendations">
+                  <input type="submit" name="submit" class="btn btn-info btn-md" value=" &uarr;">
                 </div>
               </form>
-            </div>
-            <div class="button-container">
-              <input class="btn btn-success" id="hu" type="button" value="Get resources" onclick="location.href='{% url 'Y_R' %}'" />
             </div>
           </div>
         </div>

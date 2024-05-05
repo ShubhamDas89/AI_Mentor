@@ -171,7 +171,8 @@ def get_recommendations(request):
         recommendations[user_input] = list(recommended_topics)[:3]
 
         return render(request, 'recommendations_form.html', {'user_input': user_input, 'recommendations': recommendations})
-    return render(request, 'recommendations_form.html')
+    username = request.user.first_name
+    return render(request, 'recommendations_form.html', {'username': username})
 def logini(request):
     if request.method=='POST':
         username=request.POST.get('username')

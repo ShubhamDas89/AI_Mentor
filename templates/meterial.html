@@ -13,61 +13,17 @@
     <title>AI_Mentor</title>
     <style>
       .youtube{
-           margin: 0 auto;
+            margin: 0 auto;
             width: 40%;
-            max-width: 500px;
+            max-width: 700px;
             min-width: 300px;
-
-      }
-      h3 span {
-        display: inline-block;
-        overflow: hidden;
-        white-space: nowrap;
+            position: relative;
+            display: flex-box;
       }
       
-      h3 .line1 {
-        animation: typing1 2s steps(30) forwards, blink-caret 0.5s ;
-      }
-      
-      h3 .line2 {
-        animation: typing2 2s steps(30) forwards, blink-caret 0.5s ;
-        animation-delay: 2s; /* Delay the start of the second line's animation */
-        width: 0; /* Set initial width to 0 */
-      }
-      
-      h3 {
-        color: rgb(146, 91, 40);
-        text-align: center;
-        font-family: Monospace;
-        text-shadow: 1px 1px;
-      }
-      
-      @keyframes blink-caret {
-        from, to {
-          border-right: 3px solid transparent;
-        }
-        50% {
-          border-right: 3px solid #fff; /* Adjust the color as needed */
-        }
-      }
-      
-      @keyframes typing1 {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
-      }
-      
-      @keyframes typing2 {
-        from {
-          width: 0;
-        }
-        to {
-          width: 100%;
-        }
-      }
+      .btn-container {
+       text-align: right;
+    }
       .navbar-custom {
         position: relative;
         display: flex;
@@ -125,12 +81,6 @@
         flex-direction: column;
       }
       
-      /* Rest of your CSS */
-      
-      /* Add media query for smaller screens */
-      /* Rest of your CSS */
-  
-      /* Add media query for smaller screens */
       @media screen and (max-width: 768px) {
         .navbar-toggle {
           display: block;
@@ -165,6 +115,17 @@
         padding: 0;
         font-family: Arial, sans-serif;
     }
+    #resources {
+      backdrop-filter: blur(10px); /* Adjust the blur radius as needed */
+      background-color: rgba(255, 255, 255, 0.5); /* Adjust the background color and opacity */
+      padding: 20px; /* Add padding to make the blur effect more visible */
+      border-radius: 15px; /* Adjust the border-radius for rounded corners */
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Add a shadow effect */
+   }
+  
+   .form-control {
+    border-radius: 10px; /* Adjust the value as needed to control the roundness of the corners */
+}
     </style>
   </head>
   <body >
@@ -178,37 +139,38 @@
       </ul>
     </nav>
   <br>
- <div class="youtube">
-  <h3>
-    <span class="line1">Write the topic you want to</span><br>
-        <span class="line2"> collect resources about!</span>
-        </h3>
-  <br>
-  <form action="" method="POST">
-    {% csrf_token %}
-    <input  class="form-control" placeholder="Enter the topic you are looking for"type="text" name='YouTube' >
+  <div class="youtube">
     <br>
-    {% if offline_message %}
-    <div>
-        <p>{{ offline_message }}</p>
-    </div>
-   {% endif %}
+    {% if zipped_lists %}
     <div id="resources">
-      <ul>
-        {% for topics,links in zipped_lists  %}
-        <ul>
-            <li>
-              <a> {{topics}}</a>
-              <a href="{{links}}"target="_blank"><br>{{ links }}</a>
-              <a> </a>
-            </li>
-          </ul>
-          {% endfor %}
-      </ul>
+    <ol>
+      {% for topics,links in zipped_lists  %}
+          <li>
+            <a> {{topics}}</a>
+            <a href="{{links}}"target="_blank"><br>{{ links }}</a>
+            <a> </a>
+          </li>
+        {% endfor %}
+    </ol>
     </div>
-    <input type="submit"name="submit" class="btn btn-info btn-md" value="Search">
-  </form>
- </div>
+    {% else %}
+    <h2> Write the topic you want to collect resources about! </h2>
+    {% endif %}
+    <br>
+    <form action="" method="POST">
+      {% csrf_token %}
+      <input  class="form-control" placeholder="Enter the topic you are looking for"type="text" name='YouTube' required >
+      <br>
+      {% if offline_message %}
+      <div>
+          <p>{{ offline_message }}</p>
+      </div>
+    {% endif %}
+    <div class="btn-container">
+      <input type="submit" name="submit" class="btn btn-info btn-md" value="Search">
+  </div>
+    </form>
+  </div>
  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
  <script>
    window.botpressWebChat.init({

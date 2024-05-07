@@ -52,7 +52,7 @@
         display: inline-block;
         overflow: hidden;
         white-space: nowrap;
-        animation: typing 6s steps(30) forwards, blink-caret 1s step-end infinite;
+        animation: typing 6s steps(30) forwards, blink-caret 1s ;
     }
     h1 {
         color: MediumBlue;
@@ -96,13 +96,20 @@
       .navbar-links li a:hover {
         color: #10078d; /* Text color on hover (blue) */
       }
-      
+      body {
+        background-image: url('{% static "images/1.jpg" %}');
+        background-size: 100vw 100vh;
+        background-repeat: no-repeat;
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+    }
     
   </style>
   </head>
 
   
-  <body style="background-image: url('{% static '/images/1.jpg'%}'); background-size: cover; background-repeat: no-repeat; margin: 0; padding: 0; font-family: Arial, sans-serif;">
+  <body>
     <nav class="navbar-custom">
         <a class="navbar-brand" href="#">AI Mentor</a>
         <ul class="navbar-links">
@@ -135,25 +142,25 @@
     </div>
 </div>
 <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-<script>
-  window.botpressWebChat.init({
-     "botName":"AI Mentor",
-      "composerPlaceholder": "Ask Your Questions",
-      "botConversationDescription": "This chatbot helps you to find yout answers.",
-      "botId": "f337a604-6140-4b78-9b6e-144c4358d045",
-      "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
-      "messagingUrl": "https://messaging.botpress.cloud",
-      "clientId": "f337a604-6140-4b78-9b6e-144c4358d045",
-      "webhookId": "79928da6-1305-4977-b463-101c5ba595ea",
-      "lazySocket": true,
-      "themeName": "prism",
-      "frontendVersion": "v1",
-      "useSessionStorage": true,
-      "enableConversationDeletion": true,
-      "showPoweredBy": true,
-      "theme": "prism",
-      "themeColor": "#2563eb"
-  });
+ <script>
+   window.botpressWebChat.init({
+      "botName":"AI Mentor",
+       "composerPlaceholder": "Ask Your Questions",
+       "botConversationDescription": "This chatbot helps you to find yout answers.",
+       "botId": "f337a604-6140-4b78-9b6e-144c4358d045",
+       "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
+       "messagingUrl": "https://messaging.botpress.cloud",
+       "clientId": "f337a604-6140-4b78-9b6e-144c4358d045",
+       "webhookId": "79928da6-1305-4977-b463-101c5ba595ea",
+       "lazySocket": true,
+       "themeName": "prism",
+       "frontendVersion": "v1",
+       "useSessionStorage": true,
+       "enableConversationDeletion": true,
+       "showPoweredBy": true,
+       "theme": "prism",
+       "themeColor": "#2563eb"
+   });
 </script>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

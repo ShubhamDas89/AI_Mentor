@@ -56,7 +56,14 @@ def LogoutPage(request):
 # myapp/views.py
 
 import requests
+from django.conf import settings
+from django.shortcuts import render
+import requests
+import csv
+import re
 @login_required(login_url='index')
+
+
 def Y_R(request):
     if request.method == 'POST':
         try:
@@ -92,21 +99,35 @@ def Y_R(request):
                     'offline_message': offline_message,
                 }
                 return render(request, 'meterial.html', context)
+            
             # Continue with the YouTube API request if topic is supported
             search_response = youtube.search().list(
                 q=user_topic,
                 type='video',
                 part='id,snippet',
-                maxResults=5
+                maxResults=5,
+                videoDuration='any'  # Can be 'any', 'long', 'medium', 'short'
             ).execute()
 
             links = []
             topics = []
             for video in search_response['items']:
-                topic = f"{video['snippet']['title']}"
-                link = f" https://www.youtube.com/watch?v={video['id']['videoId']}\n"
-                topics.append(topic)
-                links.append(link)
+                # Filtering out short videos (less than 1 minute)
+                video_id = video['id']['videoId']
+                video_details = youtube.videos().list(
+                    part='contentDetails',
+                    id=video_id
+                ).execute()
+
+                duration = video_details['items'][0]['contentDetails']['duration']
+                # Convert ISO 8601 duration to seconds
+                duration_in_seconds = iso8601_duration_to_seconds(duration)
+                
+                if duration_in_seconds >= 60:  # Exclude videos shorter than 1 minute
+                    topic = f"{video['snippet']['title']}"
+                    link = f"https://www.youtube.com/watch?v={video['id']['videoId']}\n"
+                    topics.append(topic)
+                    links.append(link)
 
             zipped_lists = zip(topics, links)
             context = {
@@ -125,6 +146,17 @@ def Y_R(request):
             return render(request, 'meterial.html', context)
 
     return render(request, 'meterial.html')
+
+def iso8601_duration_to_seconds(duration):
+    """
+    Parse an ISO 8601 duration string and return the total duration in seconds.
+    """
+    match = re.match(r'PT(\d+H)?(\d+M)?(\d+S)?', duration)
+    hours = int(match.group(1)[:-1]) if match.group(1) else 0
+    minutes = int(match.group(2)[:-1]) if match.group(2) else 0
+    seconds = int(match.group(3)[:-1]) if match.group(3) else 0
+    return hours * 3600 + minutes * 60 + seconds
+
 @login_required(login_url='index')
 def get_recommendations(request):
     if 'user_input' in request.GET:

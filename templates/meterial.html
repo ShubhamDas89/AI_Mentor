@@ -171,26 +171,27 @@
   </div>
     </form>
   </div>
- <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
- <script>
-   window.botpressWebChat.init({
+  <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+  <script>
+    window.botpressWebChat.init({
       "botName":"AI Mentor",
-       "composerPlaceholder": "Ask Your Questions",
-       "botConversationDescription": "This chatbot helps you to find yout answers.",
-       "botId": "f337a604-6140-4b78-9b6e-144c4358d045",
-       "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
-       "messagingUrl": "https://messaging.botpress.cloud",
-       "clientId": "f337a604-6140-4b78-9b6e-144c4358d045",
-       "webhookId": "79928da6-1305-4977-b463-101c5ba595ea",
-       "lazySocket": true,
-       "themeName": "prism",
-       "frontendVersion": "v1",
-       "useSessionStorage": true,
-       "enableConversationDeletion": true,
-       "showPoweredBy": true,
-       "theme": "prism",
-       "themeColor": "#2563eb"
-   });
+        "composerPlaceholder": "Ask Your Questions",
+        "botConversationDescription": "This chatbot helps you to find yout answers.",
+        "botId": "f337a604-6140-4b78-9b6e-144c4358d045",
+        "hostUrl": "https://cdn.botpress.cloud/webchat/v1",
+        "messagingUrl": "https://messaging.botpress.cloud",
+        "clientId": "f337a604-6140-4b78-9b6e-144c4358d045",
+        "webhookId": "79928da6-1305-4977-b463-101c5ba595ea",
+        "lazySocket": true,
+        "themeName": "prism",
+        "frontendVersion": "v1",
+        "useSessionStorage": true,
+        "enableConversationDeletion": true,
+        "showPoweredBy": true,
+        "theme": "prism",
+        "themeColor": "#2563eb",
+        "allowedOrigins": []
+    });
    document.querySelector('.navbar-toggle').addEventListener('click', function() {
     document.querySelector('.navbar-links').classList.toggle('open');
   });
